@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .choices {
+            margin-bottom: 20px;
+        }
+        .choices input {
+            margin-right: 10px;
+        }
+        .correct {
+            color: #8BC34A;
+            font-weight: bold;
+            font-size: 18px; /* Kích thước chữ cho đáp án đúng */
+        }
+        .incorrect {
+            color: red;
+            font-weight: bold;
+            font-size: 14px; /* Kích thước chữ cho đáp án sai */
+        }
+        .translation {
+            font-style: italic;
+            color: #555; /* Màu cho phiên bản tiếng Việt */
+            font-size: 14px; /* Kích thước chữ cho phiên bản tiếng Việt */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Bài trắc nghiệm về Điện toán đám mây</h2>
+
+    <div id="quiz">
+        <!-- Câu hỏi sẽ được tạo ở đây bằng JavaScript -->
+    </div>
+</div>
+
+<script>
+    const questions = [
+    {
+    question: "Câu 1: What are the advantages of cloud computing over computing on-premises? (Select the best answer.)",
+    translation: "(Câu 1: Những lợi thế của điện toán đám mây so với điện toán tại chỗ là gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Avoid large capital purchases",
+      "Use on-demand capacity",
+      "Go global in minutes",
+      "Increase speed and agility",
+      "All of the above"
+    ],
+    choicesTranslation: [
+      "(Tránh các khoản mua sắm lớn)",
+      "(Sử dụng dung lượng theo yêu cầu)",
+      "(Toàn cầu hóa trong vài phút)",
+      "(Tăng tốc độ và tính linh hoạt)",
+      "(Tất cả các điều trên)"
+    ],
+    correctAnswer: [4]
+  },
+  {
+    question: "Câu 2: What is the pricing model that enables AWS customers to pay for resources on an as-needed basis? (Select the best answer.)",
+    translation: "(Câu 2: Mô hình định giá nào cho phép khách hàng AWS trả tiền cho tài nguyên theo nhu cầu? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Pay as you decommission",
+      "Pay as you go",
+      "Pay as you buy",
+      "Pay as you reserve"
+    ],
+    choicesTranslation: [
+      "(Trả tiền khi bạn giải phóng tài nguyên)",
+      "(Trả tiền khi bạn sử dụng)",
+      "(Trả tiền khi bạn mua)",
+      "(Trả tiền khi bạn đặt trước)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 3: Which of these is NOT a cloud computing model? (Select the best answer.)",
+    translation: "(Câu 3: Mô hình nào dưới đây KHÔNG phải là mô hình điện toán đám mây? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Platform as a service",
+      "Infrastructure as a service",
+      "System administration as a service",
+      "Software as a service"
+    ],
+    choicesTranslation: [
+      "(Nền tảng như một dịch vụ)",
+      "(Hạ tầng như một dịch vụ)",
+      "(Quản trị hệ thống như một dịch vụ)",
+      "(Phần mềm như một dịch vụ)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 4: True or False? AWS owns and maintains the network-connected hardware required for application services, while you provision and use what you need.",
+    translation: "(Câu 4: Đúng hay Sai? AWS sở hữu và duy trì phần cứng kết nối mạng cần thiết cho các dịch vụ ứng dụng, trong khi bạn cung cấp và sử dụng những gì bạn cần.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 5: Which of these is NOT a benefit of cloud computing over on-premises computing? (Select the best answer.)",
+    translation: "(Câu 5: Lợi ích nào dưới đây KHÔNG phải là lợi ích của điện toán đám mây so với điện toán tại chỗ? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Increase speed and agility",
+      "Pay for racking, stacking, and powering servers",
+      "Eliminate guessing on your infrastructure capacity needs",
+      "Trade capital expense for variable expense",
+      "Benefit from massive economies of scale"
+    ],
+    choicesTranslation: [
+      "(Tăng tốc độ và tính linh hoạt)",
+      "(Trả tiền cho việc lắp đặt, xếp chồng và cấp nguồn cho máy chủ)",
+      "(Loại bỏ việc phỏng đoán nhu cầu hạ tầng của bạn)",
+      "(Chuyển từ chi phí cố định sang chi phí biến đổi)",
+      "(Hưởng lợi từ quy mô kinh tế lớn)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 6: Which of the following are NOT benefits of AWS Cloud computing? (Choose two.)",
+    translation: "(Câu 6: Những điều nào sau đây KHÔNG phải là lợi ích của điện toán đám mây AWS? (Chọn hai.))",
+    choices: [
+      "Multiple procurement cycles",
+      "High availability",
+      "High latency",
+      "Temporary and disposable resources",
+      "Fault-tolerant databases"
+    ],
+    choicesTranslation: [
+      "(Nhiều chu kỳ mua sắm)",
+      "(Khả dụng cao)",
+      "(Độ trễ cao)",
+      "(Tài nguyên tạm thời và có thể tiêu hủy)",
+      "(Cơ sở dữ liệu chống lỗi)"
+    ],
+    correctAnswer: [0, 2]
+  },
+  {
+    question: "Câu 7: Which of the following is a compute service? (Select the best answer.)",
+    translation: "(Câu 7: Dịch vụ nào sau đây là dịch vụ tính toán? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Amazon VPC",
+      "Amazon S3",
+      "Amazon EC2",
+      "Amazon CloudFront",
+      "Amazon Redshift"
+    ],
+    choicesTranslation: [
+      "(Amazon VPC)",
+      "(Amazon S3)",
+      "(Amazon EC2)",
+      "(Amazon CloudFront)",
+      "(Amazon Redshift)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 8: True or False? Cloud computing provides a simple way to access servers, storage, databases, and a broad set of application services over the internet. You own the network-connected hardware required for these services and Amazon Web Services provisions what you need.",
+    translation: "(Câu 8: Đúng hay Sai? Điện toán đám mây cung cấp một cách đơn giản để truy cập máy chủ, lưu trữ, cơ sở dữ liệu và một loạt các dịch vụ ứng dụng qua internet. Bạn sở hữu phần cứng kết nối mạng cần thiết cho các dịch vụ này và AWS cung cấp những gì bạn cần.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 9: Economies of scale result from (Select the best answer.)",
+    translation: "(Câu 9: Quy mô kinh tế là kết quả từ việc (Chọn đáp án đúng nhất.))",
+    choices: [
+      "having many different cloud providers",
+      "having-hundreds of thousands of customers aggregated in the cloud",
+      "having hundreds of cloud services available over the internet",
+      "having to invest heavily in data centers and servers"
+    ],
+    choicesTranslation: [
+      "(có nhiều nhà cung cấp đám mây khác nhau)",
+      "(có hàng trăm nghìn khách hàng tập hợp trên đám mây)",
+      "(có hàng trăm dịch vụ đám mây có sẵn qua internet)",
+      "(phải đầu tư mạnh vào trung tâm dữ liệu và máy chủ)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 10: Which of these are ways to access AWS core services? (Choose three.)",
+    translation: "(Câu 10: Những cách nào để truy cập các dịch vụ cốt lõi của AWS? (Chọn ba))",
+    choices: [
+      "Technical support calls",
+      "AWS Marketplace",
+      "AWS Management Console",
+      "AWS Command Line Interface (CLI)",
+      "Software Development Kits (SDKs)"
+    ],
+    choicesTranslation: [
+      "(Cuộc gọi hỗ trợ kỹ thuật)",
+      "(Chợ AWS)",
+      "(Bảng điều khiển AWS)",
+      "(Giao diện dòng lệnh AWS)",
+      "(Bộ phát triển phần mềm (SDKs))"
+    ],
+    correctAnswer: [2, 3, 4]
+  },
+  {
+    question: "Câu 11: For certain services like Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Relational Database Service (Amazon RDS), you can invest in reserved capacity. What options are available for Reserved Instances? (Choose three.)",
+    translation: "(Câu 11: Đối với một số dịch vụ như Amazon EC2 và Amazon RDS, bạn có thể đầu tư vào dung lượng đã được đặt trước. Những tùy chọn nào có sẵn cho Reserved Instances? (Chọn ba.))",
+    choices: [
+      "AURI",
+      "MURI",
+      "NURI",
+      "PURI",
+      "DURI"
+    ],
+    choicesTranslation: [
+      "(AURI)",
+      "(MURI)",
+      "(NURI)",
+      "(PURI)",
+      "(DURI)"
+    ],
+    correctAnswer: [0, 2, 3]
+  },
+  {
+    question: "Câu 12: Where can a customer go to get more details about Amazon Elastic Compute Cloud (Amazon EC2) billing activity that took place 3 months ago? (Select the best answer.)",
+    translation: "(Câu 12: Khách hàng có thể đến đâu để nhận thêm thông tin chi tiết về hoạt động thanh toán của Amazon EC2 diễn ra 3 tháng trước? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Amazon EC2 dashboard",
+      "AWS Cost Explorer",
+      "AWS Trusted Advisor dashboard",
+      "AWS CloudTrail logs stored in Amazon Simple Storage Service (Amazon S3)"
+    ],
+    choicesTranslation: [
+      "(Bảng điều khiển Amazon EC2)",
+      "(AWS Cost Explorer)",
+      "(Bảng điều khiển AWS Trusted Advisor)",
+      "(Nhật ký AWS CloudTrail được lưu trữ trong Amazon S3)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 13: True or false? To receive the discounted rate associated with Reserved Instances, you must make a full, upfront payment for the term of the agreement. (Select the best answer.)",
+    translation: "(Câu 13: Đúng hay Sai? Để nhận được mức giá giảm liên quan đến Reserved Instances, bạn phải thanh toán toàn bộ trước cho thời hạn của thỏa thuận. (Chọn đáp án đúng nhất.))",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 14: Which statement is true about the pricing model on AWS? (Select the best answer.)",
+    translation: "(Câu 14: Câu nào đúng về mô hình định giá trên AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "In most cases, there is a per gigabyte charge for inbound data transfer.",
+      "Storage is typically charged per gigabyte.",
+      "Compute is typically charged as a monthly fee based on instance type.",
+      "Outbound charges are free up to a per account limit."
+    ],
+    choicesTranslation: [
+      "(Trong hầu hết các trường hợp, có phí trên mỗi gigabyte cho truyền dữ liệu vào.)",
+      "(Lưu trữ thường được tính phí theo gigabyte.)",
+      "(Tính toán thường được tính phí hàng tháng dựa trên loại phiên bản.)",
+      "(Phí truyền dữ liệu ra ngoài miễn phí đến một giới hạn nhất định cho mỗi tài khoản.)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 15: What are the four support plans offered by AWS Support? (Select the best answer.)",
+    translation: "(Câu 15: Bốn gói hỗ trợ nào được AWS Support cung cấp? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Basic, Developer, Business, Enterprise",
+      "Basic, Startup, Business, Enterprise",
+      "Free, Bronze, Silver, Gold",
+      "All support is free"
+    ],
+    choicesTranslation: [
+      "(Cơ bản, Nhà phát triển, Doanh nghiệp, Doanh nghiệp lớn)",
+      "(Cơ bản, Khởi nghiệp, Doanh nghiệp, Doanh nghiệp lớn)",
+      "(Miễn phí, Đồng, Bạc, Vàng)",
+      "(Tất cả hỗ trợ đều miễn phí)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 16: What AWS tool lets you explore AWS services and create an estimate for the cost of your use cases on AWS? (Select the best answer.)",
+    translation: "(Câu 16: Công cụ AWS nào cho phép bạn khám phá các dịch vụ AWS và tạo ước tính cho chi phí của các trường hợp sử dụng của bạn trên AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "AWS Pricing Calculator",
+      "AWS Budgets",
+      "AWS Cost and Usage Report",
+      "AWS Billing Dashboard"
+    ],
+    choicesTranslation: [
+      "(Máy tính giá AWS)",
+      "(Ngân sách AWS)",
+      "(Báo cáo chi phí và sử dụng AWS)",
+      "(Bảng điều khiển thanh toán AWS)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 17: As AWS grows, the cost of doing business is reduced and savings are passed back to the customer with lower pricing. What is this optimization called? (Select the best answer.)",
+    translation: "(Câu 17: Khi AWS phát triển, chi phí kinh doanh giảm và khoản tiết kiệm được chuyển lại cho khách hàng bằng giá thấp hơn. Tối ưu hóa này được gọi là gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Expenditure awareness",
+      "Economies of scale",
+      "Matching supply and demand",
+      "EC2 Right Sizing"
+    ],
+    choicesTranslation: [
+      "(Nhận thức chi tiêu)",
+      "(Quy mô kinh tế)",
+      "(Phù hợp cung và cầu)",
+      "(Điều chỉnh kích thước EC2 hợp lý)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 18: True or false? AWS offers some services at no charge, such as Amazon Virtual Private Cloud, AWS Identity and Access Management, Consolidated Billing, AWS Elastic Beanstalk, automatic scaling, AWS OpsWorks and AWS CloudFormation. However, you might be charged for other AWS services that you use in conjunction with these services.",
+    translation: "(Câu 18: Đúng hay Sai? AWS cung cấp một số dịch vụ miễn phí, chẳng hạn như Amazon Virtual Private Cloud, AWS Identity and Access Management, Consolidated Billing, AWS Elastic Beanstalk, tự động mở rộng quy mô, AWS OpsWorks và AWS CloudFormation. Tuy nhiên, bạn có thể bị tính phí cho các dịch vụ AWS khác mà bạn sử dụng cùng với những dịch vụ này.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 19: What are benefits of using AWS Organizations? (Choose two.)",
+    translation: "(Câu 19: Lợi ích của việc sử dụng AWS Organizations là gì? (Chọn hai.))",
+    choices: [
+      "Replaces existing AWS Identity and Access Management (IAM) policies with service control policies (SCPs), which are simpler to manage",
+      "Provides the ability to create groups of accounts and then attach policies to a group",
+      "Provides the ability to create an unlimited number of nested organizational units (OUs) to support your desired structure",
+      "Simplifies automating account creation and management by using APIs",
+      "Prevents any restrictions from being put on the root user that is associated with the main organization in an account"
+    ],
+    choicesTranslation: [
+      "(Thay thế các chính sách AWS Identity and Access Management (IAM) hiện có bằng các chính sách kiểm soát dịch vụ (SCPs), đơn giản hơn để quản lý)",
+      "(Cung cấp khả năng tạo nhóm các tài khoản và sau đó gắn chính sách vào nhóm)",
+      "(Cung cấp khả năng tạo số lượng không giới hạn các đơn vị tổ chức lồng nhau (OUs) để hỗ trợ cấu trúc mong muốn của bạn)",
+      "(Đơn giản hóa tự động hóa việc tạo và quản lý tài khoản bằng cách sử dụng APIs)",
+      "(Ngăn bất kỳ hạn chế nào áp dụng cho người dùng gốc liên kết với tổ chức chính trong một tài khoản)"
+    ],
+    correctAnswer: [1, 3]
+  },
+  {
+    question: "Câu 20: True or false? Unlimited services are available with the AWS Free Tier to new AWS customers for 12 months following their AWS sign-up date. (Select the best answer.)",
+    translation: "(Câu 20: Đúng hay Sai? Các dịch vụ không giới hạn có sẵn với AWS Free Tier cho khách hàng mới của AWS trong 12 tháng sau khi đăng ký tài khoản AWS. (Chọn đáp án đúng nhất.))",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 21: Which component of the AWS Global Infrastructure does Amazon CloudFront use to ensure low-latency delivery? (Select the best answer.)",
+    translation: "(Câu 21: Thành phần nào của cơ sở hạ tầng toàn cầu AWS mà Amazon CloudFront sử dụng để đảm bảo phân phối độ trễ thấp? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "AWS Regions",
+      "AWS edge locations",
+      "AWS Availability Zones",
+      "Amazon Virtual Private Cloud (Amazon VPC)"
+    ],
+    choicesTranslation: [
+      "(Vùng AWS)",
+      "(Các địa điểm biên AWS)",
+      "(Vùng sẵn sàng AWS)",
+      "(Amazon Virtual Private Cloud (Amazon VPC))"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 22: You can run applications and workloads from a Region closer to the end users to latency.",
+    translation: "(Câu 22: Bạn có thể chạy các ứng dụng và khối lượng công việc từ một vùng gần người dùng cuối hơn để giảm độ trễ.)",
+    choices: [
+      "increase",
+      "decrease"
+    ],
+    choicesTranslation: [
+      "(tăng)",
+      "(giảm)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 23: True or False? Networking, storage, compute, and databases are examples of service categories that AWS offers.",
+    translation: "(Câu 23: Đúng hay Sai? Mạng, lưu trữ, tính toán và cơ sở dữ liệu là các ví dụ về các danh mục dịch vụ mà AWS cung cấp.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 24: Which of the following are geographic areas that host two or more Availability Zones? (Select the best answer.)",
+    translation: "(Câu 24: Khu vực địa lý nào sau đây chứa hai hoặc nhiều Vùng sẵn sàng? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "AWS Origins",
+      "AWS Regions",
+      "Compute zones",
+      "Edge locations"
+    ],
+    choicesTranslation: [
+      "(Nguồn gốc AWS)",
+      "(Vùng AWS)",
+      "(Vùng tính toán)",
+      "(Địa điểm biên)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 25: …..means the infrastructure has built-in component redundancy and means that resources dynamically adjust to increases or decreases in capacity requirements",
+    translation: "(Câu 25: …..có nghĩa là cơ sở hạ tầng có sự dự phòng thành phần tích hợp và các tài nguyên tự động điều chỉnh để tăng hoặc giảm yêu cầu về công suất)",
+    choices: [
+      "No human intervention, fault tolerant",
+      "Elastic and scalable, no human intervention",
+      "Fault tolerant, elastic and scalable",
+      "Fault tolerant, no human intervention",
+      "Elastic and scalable, fault tolerant"
+    ],
+    choicesTranslation: [
+      "(Không cần can thiệp con người, chịu lỗi)",
+      "(Co giãn và mở rộng, không cần can thiệp con người)",
+      "(Chịu lỗi, co giãn và mở rộng)",
+      "(Chịu lỗi, không cần can thiệp con người)",
+      "(Co giãn và mở rộng, chịu lỗi)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 26: True or False? Availability Zones within a Region are connected through low-latency links",
+    translation: "(Câu 26: Đúng hay Sai? Các Vùng sẵn sàng trong một Vùng được kết nối với nhau qua các liên kết có độ trễ thấp.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 27: Which of these statements about Availability Zones is not true? (Select the best answer.)",
+    translation: "(Câu 27: Câu nào sau đây về Vùng sẵn sàng là không đúng? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Availability Zones are designed for fault isolation.",
+      "Availability Zones are made up of one or more data centers.",
+      "A data center can be used for more than one Availability Zone.",
+      "Availability Zones are connected to each other using high-speed private links."
+    ],
+    choicesTranslation: [
+      "(Các Vùng sẵn sàng được thiết kế để cách ly lỗi.)",
+      "(Các Vùng sẵn sàng bao gồm một hoặc nhiều trung tâm dữ liệu.)",
+      "(Một trung tâm dữ liệu có thể được sử dụng cho nhiều hơn một Vùng sẵn sàng.)",
+      "(Các Vùng sẵn sàng được kết nối với nhau bằng các liên kết riêng tốc độ cao.)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 28: What is true about Regions? (Choose two.)",
+    translation: "(Câu 28: Điều nào đúng về Vùng? (Chọn hai.))",
+    choices: [
+      "All Regions are located in one specific geographic area.",
+      "Each Region is located in a separate geographic area.",
+      "They are the physical locations of your customers.",
+      "A Region is a physical location that has multiple Availability Zones."
+    ],
+    choicesTranslation: [
+      "(Tất cả các Vùng đều nằm trong một khu vực địa lý cụ thể.)",
+      "(Mỗi Vùng nằm ở một khu vực địa lý riêng biệt.)",
+      "(Chúng là vị trí vật lý của khách hàng của bạn.)",
+      "(Một Vùng là một vị trí vật lý có nhiều Vùng sẵn sàng.)"
+    ],
+    correctAnswer: [1, 3]
+  },
+  {
+    question: "Câu 29: AWS highly recommends provisioning your compute resources across ……..Availability Zones. (Select the best answer.)",
+    translation: "(Câu 29: AWS khuyến nghị nên cung cấp tài nguyên tính toán của bạn trên nhiều Vùng sẵn sàng. (Chọn đáp án đúng nhất.))",
+    choices: [
+      "multiple",
+      "no",
+      "single",
+      "all"
+    ],
+    choicesTranslation: [
+      "(nhiều)",
+      "(không có)",
+      "(một)",
+      "(tất cả)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 30: True or False? Edge locations are only located in the same general area as Regions.",
+    translation: "(Câu 30: Đúng hay Sai? Các địa điểm biên chỉ nằm trong cùng khu vực chung với các Vùng.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 31: In the shared responsibility model, AWS is responsible for providing what? (Select the best answer.)",
+    translation: "(Câu 31: Trong mô hình trách nhiệm chung, AWS có trách nhiệm cung cấp cái gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Security of the cloud",
+      "Security to the cloud",
+      "Security for the cloud",
+      "Security in the cloud"
+    ],
+    choicesTranslation: [
+      "(Bảo mật của đám mây)",
+      "(Bảo mật cho đám mây)",
+      "(Bảo mật cho đám mây)",
+      "(Bảo mật trong đám mây)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 32: In the shared responsibility model, which of the following are examples of 'security in the cloud'? (Choose two.)",
+    translation: "(Câu 32: Trong mô hình trách nhiệm chung, đâu là ví dụ về 'bảo mật trong đám mây'? (Chọn hai.))",
+    choices: [
+      "Compliance with compute security standards and regulations",
+      "Physical security of the facilities in which the services operate",
+      "Security group configurations",
+      "Encryption of data at rest and data transit",
+      "Protecting the global infrastructure"
+    ],
+    choicesTranslation: [
+      "(Tuân thủ các tiêu chuẩn và quy định về bảo mật tính toán)",
+      "(Bảo mật vật lý của các cơ sở nơi dịch vụ hoạt động)",
+      "(Cấu hình nhóm bảo mật)",
+      "(Mã hóa dữ liệu khi nghỉ và khi truyền)",
+      "(Bảo vệ cơ sở hạ tầng toàn cầu)"
+    ],
+    correctAnswer: [2, 3]
+  },
+  {
+    question: "Câu 33: Which of the following is the responsibility of AWS under the AWS shared responsibility model? (Select the best answer.)",
+    translation: "(Câu 33: Điều nào sau đây là trách nhiệm của AWS theo mô hình trách nhiệm chung của AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Configuring third-party applications",
+      "Maintaining physical hardware",
+      "Security application access and data",
+      "Managing custom Amazon Machine Images (AMIs)"
+    ],
+    choicesTranslation: [
+      "(Cấu hình ứng dụng của bên thứ ba)",
+      "(Bảo trì phần cứng vật lý)",
+      "(Bảo mật quyền truy cập ứng dụng và dữ liệu)",
+      "(Quản lý hình ảnh máy Amazon tùy chỉnh (AMIs))"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 34: When creating an AWS Identity and Access Management (IAM) policy, what are the two types of access that can be granted to a user? (Choose two.)",
+    translation: "(Câu 34: Khi tạo một chính sách quản lý danh tính và quyền truy cập AWS (IAM), có hai loại quyền truy cập nào có thể được cấp cho một người dùng? (Chọn hai.))",
+    choices: [
+      "Institutional access",
+      "Authorized access",
+      "Programmatic access",
+      "AWS Management Console access",
+      "Administrative root access"
+    ],
+    choicesTranslation: [
+      "(Quyền truy cập thể chế)",
+      "(Quyền truy cập được ủy quyền)",
+      "(Quyền truy cập lập trình)",
+      "(Quyền truy cập bảng điều khiển quản lý AWS)",
+      "(Quyền truy cập root quản trị)"
+    ],
+    correctAnswer: [2, 3]
+  },
+  {
+    question: "Câu 35: True or False? AWS Organizations enables you to consolidate multiple AWS accounts so that you centrally manage them.",
+    translation: "(Câu 35: Đúng hay Sai? AWS Organizations cho phép bạn hợp nhất nhiều tài khoản AWS để quản lý chúng một cách tập trung.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 36: Which of the following are best practices to secure your account using AWS Identity and Access Management (IAM)? (Choose two.)",
+    translation: "(Câu 36: Những điều nào sau đây là những thực tiễn tốt nhất để bảo mật tài khoản của bạn khi sử dụng AWS Identity and Access Management (IAM)? (Chọn hai.))",
+    choices: [
+      "Provide users with default administrative privileges.",
+      "Leave unused and unnecessary users and credentials in place.",
+      "Manage access to AWS resources.",
+      "Avoid using IAM groups to grant the same access permissions to multiple users",
+      "Define fine-grained access rights."
+    ],
+    choicesTranslation: [
+      "(Cung cấp cho người dùng quyền quản trị mặc định.)",
+      "(Giữ lại những người dùng và thông tin xác thực không cần thiết.)",
+      "(Quản lý quyền truy cập vào các tài nguyên AWS.)",
+      "(Tránh sử dụng nhóm IAM để cấp cùng một quyền truy cập cho nhiều người dùng)",
+      "(Xác định quyền truy cập chi tiết.)"
+    ],
+    correctAnswer: [2, 4]
+  },
+  {
+    question: "Câu 37: Which of the following should be done by the AWS account root user? (Select the best answer.)",
+    translation: "(Câu 37: Điều nào sau đây nên được thực hiện bởi người dùng root tài khoản AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Secure access for applications",
+      "Integrate with other AWS services",
+      "Change granular permissions",
+      "Change the AWS support plan"
+    ],
+    choicesTranslation: [
+      "(Bảo mật quyền truy cập cho các ứng dụng)",
+      "(Tích hợp với các dịch vụ AWS khác)",
+      "(Thay đổi quyền hạn chi tiết)",
+      "(Thay đổi gói hỗ trợ AWS)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 38: After initial login, what does AWS recommend as the best practice for the AWS account root user? (Select the best answer.)",
+    translation: "(Câu 38: Sau khi đăng nhập lần đầu, AWS khuyến nghị thực tiễn tốt nhất cho người dùng root tài khoản AWS là gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Delete the AWS account root user",
+      "Revoke all permissions on the AWS account root user",
+      "Restrict permission on the AWS account root user",
+      "Delete the access keys of the AWS account root user"
+    ],
+    choicesTranslation: [
+      "(Xóa người dùng root tài khoản AWS)",
+      "(Thu hồi tất cả quyền truy cập trên người dùng root tài khoản AWS)",
+      "(Giới hạn quyền trên người dùng root tài khoản AWS)",
+      "(Xóa các khóa truy cập của người dùng root tài khoản AWS)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 39: How would a system administrator add an additional layer of login security to a user's AWS Management Console? (Select the best answer.)",
+    translation: "(Câu 39: Một quản trị viên hệ thống sẽ thêm một lớp bảo mật đăng nhập bổ sung cho bảng điều khiển quản lý AWS của người dùng như thế nào? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Use Amazon Cloud Directory",
+      "Audit AWS Identity and Access Management (IAM) roles",
+      "Enable multi-factor authentication",
+      "Enable AWS CloudTrail"
+    ],
+    choicesTranslation: [
+      "(Sử dụng Amazon Cloud Directory)",
+      "(Kiểm toán vai trò AWS Identity and Access Management (IAM))",
+      "(Kích hoạt xác thực đa yếu tố)",
+      "(Kích hoạt AWS CloudTrail)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 40: True or False? AWS Key Management Service (AWS KMS) enables you to assess, audit, and evaluate the configurations of your AWS resources.",
+    translation: "(Câu 40: Đúng hay Sai? Dịch vụ Quản lý Khóa AWS (AWS KMS) cho phép bạn đánh giá, kiểm toán và đánh giá các cấu hình của tài nguyên AWS của bạn.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 41: With Amazon Virtual Private Cloud (Amazon VPC), what is the smallest size subnet you can have in a VPC? (Select the best answer.)",
+    translation: "(Câu 41: Với Amazon Virtual Private Cloud (Amazon VPC), kích thước subnet nhỏ nhất bạn có thể có trong một VPC là gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "/28",
+      "/26",
+      "/24",
+      "/30"
+    ],
+    choicesTranslation: [
+      "(/28)",
+      "(/26)",
+      "(/24)",
+      "(/30)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 42: With Amazon Virtual Private Cloud (Amazon VPC), what is the maximum size IP address range you can have in a VPC? (Select the best answer.)",
+    translation: "(Câu 42: Với Amazon Virtual Private Cloud (Amazon VPC), kích thước tối đa của dải địa chỉ IP bạn có thể có trong một VPC là gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "/16",
+      "/28",
+      "/24",
+      "/30"
+    ],
+    choicesTranslation: [
+      "(/16)",
+      "(/28)",
+      "(/24)",
+      "(/30)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 43: You need to allow resources in a private subnet to access the internet. Which of the following must be present to enable this access? (Select the best answer.)",
+    translation: "(Câu 43: Bạn cần cho phép các tài nguyên trong một subnet riêng tư truy cập internet. Điều nào sau đây phải có để cho phép truy cập này? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Security groups",
+      "Network access control lists",
+      "Route tables",
+      "NAT gateway"
+    ],
+    choicesTranslation: [
+      "(Nhóm bảo mật)",
+      "(Danh sách kiểm soát truy cập mạng)",
+      "(Bảng định tuyến)",
+      "(Cổng NAT)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 44: Which AWS networking service enables a company to create a virtual network within AWS? (Select the best answer.)",
+    translation: "(Câu 44: Dịch vụ mạng AWS nào cho phép một công ty tạo một mạng ảo trong AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Amazon Virtual Private Cloud (Amazon VPC)",
+      "AWS Config",
+      "AWS Direct Connect",
+      "Amazon Route 53"
+    ],
+    choicesTranslation: [
+      "(Amazon Virtual Private Cloud (Amazon VPC))",
+      "(AWS Config)",
+      "(AWS Direct Connect)",
+      "(Amazon Route 53)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 45: True or False? Private subnets have direct access to the internet.",
+    translation: "(Câu 45: Đúng hay Sai? Các subnet riêng tư có quyền truy cập trực tiếp vào internet.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 46: Which component of AWS Global Infrastructure does Amazon CloudFront use to ensure low-latency delivery? (Select the best answer.)",
+    translation: "(Câu 46: Thành phần nào của hạ tầng toàn cầu AWS mà Amazon CloudFront sử dụng để đảm bảo giao hàng có độ trễ thấp? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "AWS Availability Zones",
+      "AWS edge locations",
+      "Amazon Virtual Private Cloud (Amazon VPC)",
+      "AWS Regions"
+    ],
+    choicesTranslation: [
+      "(Các vùng khả dụng AWS)",
+      "(Các vị trí biên AWS)",
+      "(Amazon Virtual Private Cloud (Amazon VPC))",
+      "(Các vùng AWS)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 47: Which of the following is an optional security control that can be applied at the subnet layer of a VPC? (Select the best answer.)",
+    translation: "(Câu 47: Điều nào sau đây là một kiểm soát bảo mật tùy chọn có thể áp dụng ở lớp subnet của một VPC? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Network ACL",
+      "Web application firewall",
+      "Security group",
+      "Firewall"
+    ],
+    choicesTranslation: [
+      "(ACL mạng)",
+      "(Tường lửa ứng dụng web)",
+      "(Nhóm bảo mật)",
+      "(Tường lửa)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 48: What happens when you use Amazon Virtual Private Cloud (Amazon VPC) to create a new VPC? (Select the best answer.)",
+    translation: "(Câu 48: Điều gì xảy ra khi bạn sử dụng Amazon Virtual Private Cloud (Amazon VPC) để tạo một VPC mới? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Three subnets are created by default: one for each Availability Zone.",
+      "A main route table is created by default.",
+      "An internet gateway is created by default.",
+      "Three subnets are created by default in one Availability Zone."
+    ],
+    choicesTranslation: [
+      "(Ba subnet được tạo theo mặc định: một cho mỗi vùng khả dụng.)",
+      "(Một bảng định tuyến chính được tạo theo mặc định.)",
+      "(Một cổng internet được tạo theo mặc định.)",
+      "(Ba subnet được tạo theo mặc định trong một vùng khả dụng.)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 49: Which of the following can be used to protect Amazon Elastic Compute Cloud (Amazon EC2) instances hosted in AWS? (Select the best answer.)",
+    translation: "(Câu 49: Điều nào sau đây có thể được sử dụng để bảo vệ các phiên bản Amazon Elastic Compute Cloud (Amazon EC2) được lưu trữ trong AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Security group",
+      "All of the above",
+      "AMI",
+      "Internet Gateway"
+    ],
+    choicesTranslation: [
+      "(Nhóm bảo mật)",
+      "(Tất cả những điều trên)",
+      "(AMI)",
+      "(Cổng Internet)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 50: You are a solutions architect who works at a large retail company that is migrating its existing infrastructure to AWS. You recommend that they use a custom VPC. When you create a VPC, you assign it to an IPv4 Classless Inter-Domain Routing (CIDR) block of 10.0.1.0/24 (which has 256 total IP addresses). How many IP addresses are available? (Select the best answer.)",
+    translation: "(Câu 50: Bạn là một kiến trúc sư giải pháp làm việc tại một công ty bán lẻ lớn đang di chuyển cơ sở hạ tầng hiện có của họ sang AWS. Bạn khuyến nghị rằng họ sử dụng một VPC tùy chỉnh. Khi bạn tạo một VPC, bạn gán nó vào một khối định tuyến không lớp IPv4 (CIDR) là 10.0.1.0/24 (có tổng cộng 256 địa chỉ IP). Có bao nhiêu địa chỉ IP có sẵn? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "256",
+      "251",
+      "250",
+      "246"
+    ],
+    choicesTranslation: [
+      "(256)",
+      "(251)",
+      "(250)",
+      "(246)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 51: Why is AWS more economical than traditional data centers for applications with varying compute workloads? (Select the best answer)",
+    translation: "(Câu 51: Tại sao AWS lại tiết kiệm hơn so với các trung tâm dữ liệu truyền thống cho các ứng dụng có khối lượng công việc tính toán thay đổi? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Amazon EC2 costs are billed on a monthly basis.",
+      "Customers retain full administrative access to their Amazon EC2 instances.",
+      "Customers can permanently run enough instances to handle peak workloads.",
+      "Amazon EC2 instances can be launched on-demand when needed."
+    ],
+    choicesTranslation: [
+      "(Chi phí Amazon EC2 được tính theo tháng.)",
+      "(Khách hàng giữ quyền truy cập quản trị đầy đủ vào các phiên bản Amazon EC2 của họ.)",
+      "(Khách hàng có thể chạy vĩnh viễn đủ các phiên bản để xử lý các khối lượng công việc cao điểm.)",
+      "(Các phiên bản Amazon EC2 có thể được khởi động theo yêu cầu khi cần thiết.)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 52: If your project requires monthly reports that iterate through very large amounts of data, which Amazon Elastic Compute Cloud (Amazon EC2) purchasing option should you consider? (Select the best answer)",
+    translation: "(Câu 52: Nếu dự án của bạn yêu cầu báo cáo hàng tháng lặp qua một lượng dữ liệu rất lớn, lựa chọn mua Amazon Elastic Compute Cloud (Amazon EC2) nào bạn nên xem xét? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Spot Instances",
+      "Scheduled Reserved instances",
+      "Dedicated Hosts",
+      "On-Demand Instances"
+    ],
+    choicesTranslation: [
+      "(Phiên bản Spot)",
+      "(Các phiên bản Đặt trước theo lịch)",
+      "(Máy chủ riêng)",
+      "(Các phiên bản theo yêu cầu)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 53: What is included in an Amazon Machine Image (AMI)? (Select the best answer)",
+    translation: "(Câu 53: Điều gì được bao gồm trong một Amazon Machine Image (AMI)? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "A template for the root volume for the instance",
+      "Launch permissions that control which AWS accounts can use the AMI to launch instances.",
+      "A block device mapping that specifies the volumes to attach to the instance when it's launched",
+      "All of the above"
+    ],
+    choicesTranslation: [
+      "(Một mẫu cho ổ đĩa gốc của phiên bản)",
+      "(Quyền khởi động điều khiển tài khoản AWS nào có thể sử dụng AMI để khởi động các phiên bản.)",
+      "(Một bản đồ thiết bị khối chỉ định các ổ đĩa được gắn vào phiên bản khi nó được khởi động)",
+      "(Tất cả những điều trên)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 54: Which Amazon Elastic Compute Cloud (Amazon EC2) feature ensures your instances will not share a physical host with instances from any other AWS customer? (Select the best answer)",
+    translation: "(Câu 54: Tính năng nào của Amazon Elastic Compute Cloud (Amazon EC2) đảm bảo rằng các phiên bản của bạn sẽ không chia sẻ một máy chủ vật lý với các phiên bản của bất kỳ khách hàng AWS nào khác? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Amazon VPC",
+      "Placement groups",
+      "Dedicated Instances",
+      "Reserved Instances"
+    ],
+    choicesTranslation: [
+      "(Amazon VPC)",
+      "(Các nhóm đặt)",
+      "(Các phiên bản riêng)",
+      "(Các phiên bản Đặt trước)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 55: Which of the following services is a serverless compute service in AWS? (Select the best answer)",
+    translation: "(Câu 55: Dịch vụ nào sau đây là dịch vụ tính toán không máy chủ trong AWS? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "AWS Config",
+      "AWS Lambda",
+      "AWS OpsWorks",
+      "Amazon EC2"
+    ],
+    choicesTranslation: [
+      "(AWS Config)",
+      "(AWS Lambda)",
+      "(AWS OpsWorks)",
+      "(Amazon EC2)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 56: What is the service provided by AWS that enables developers to easily deploy and manage applications in the cloud? (Select the best answer)",
+    translation: "(Câu 56: Dịch vụ nào được AWS cung cấp giúp các nhà phát triển dễ dàng triển khai và quản lý các ứng dụng trên đám mây? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Amazon Elastic Container Service",
+      "AWS Elastic Beanstalk",
+      "AWS OpsWorks",
+      "AWS CloudFormation"
+    ],
+    choicesTranslation: [
+      "(Amazon Elastic Container Service)",
+      "(AWS Elastic Beanstalk)",
+      "(AWS OpsWorks)",
+      "(AWS CloudFormation)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 57: Your web application needs four instances to support steady traffic all of the time. On the last day of the month, the traffic triples. What is the most cost-effective way to handle this pattern? (Select the best answer)",
+    translation: "(Câu 57: Ứng dụng web của bạn cần bốn phiên bản để hỗ trợ lưu lượng truy cập ổn định mọi lúc. Vào ngày cuối cùng của tháng, lưu lượng truy cập tăng gấp ba lần. Cách tiết kiệm chi phí nhất để xử lý mô hình này là gì? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Run 12 Reserved Instances all of the time.",
+      "Run four On-Demand Instances constantly, then add eight more On-Demand Instances on the last day of each month.",
+      "Run four Reserved Instances constantly, then add eight On-Demand Instances on the last day of each month.",
+      "Run four On-Demand Instances constantly, then add eight Reserved Instances on the last day of each month."
+    ],
+    choicesTranslation: [
+      "(Chạy 12 phiên bản Đặt trước mọi lúc.)",
+      "(Chạy bốn phiên bản theo yêu cầu liên tục, sau đó thêm tám phiên bản theo yêu cầu vào ngày cuối cùng của mỗi tháng.)",
+      "(Chạy bốn phiên bản Đặt trước liên tục, sau đó thêm tám phiên bản theo yêu cầu vào ngày cuối cùng của mỗi tháng.)",
+      "(Chạy bốn phiên bản theo yêu cầu liên tục, sau đó thêm tám phiên bản Đặt trước vào ngày cuối cùng của mỗi tháng.)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 58: True or False? Containers contain an entire operating system.",
+    translation: "(Câu 58: Đúng hay Sai? Containers chứa một hệ điều hành hoàn chỉnh.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 59: Which Amazon EC2 option is best for long-term workloads with predictable usage patterns? (Select the best answer)",
+    translation: "(Câu 59: Lựa chọn Amazon EC2 nào là tốt nhất cho các khối lượng công việc dài hạn với các mẫu sử dụng có thể dự đoán? (Chọn đáp án đúng nhất.))",
+    choices: [
+      "Spot Instances",
+      "On-Demand Instances",
+      "Reserved Instances"
+    ],
+    choicesTranslation: [
+      "(Phiên bản Spot)",
+      "(Các phiên bản theo yêu cầu)",
+      "(Các phiên bản Đặt trước)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 60: Which of the following must be specified when launching a new Amazon Elastic Compute Cloud (Amazon EC2) Windows instance? (Choose two)",
+    translation: "(Câu 60: Điều nào sau đây phải được chỉ định khi khởi động một phiên bản Amazon Elastic Compute Cloud (Amazon EC2) Windows mới? (Chọn hai))",
+    choices: [
+      "Amazon Machine Image (AMI)",
+      "The Amazon EC2 instance ID",
+      "Password for the administrator account",
+      "Amazon EC2 instance type"
+    ],
+    choicesTranslation: [
+      "(Amazon Machine Image (AMI))",
+      "(ID phiên bản Amazon EC2)",
+      "(Mật khẩu cho tài khoản quản trị viên)",
+      "(Loại phiên bản Amazon EC2)"
+    ],
+    correctAnswer: [0, 3]
+  },
+  {
+    question: "Câu 61: True or False? Amazon Simple Storage Service (Amazon S3) is an object storage suitable for the storage of flat files like Microsoft Word documents, photos, etc.",
+    translation: "(Câu 61: Đúng hay Sai? Amazon Simple Storage Service (Amazon S3) là một kho lưu trữ đối tượng phù hợp để lưu trữ các tệp phẳng như tài liệu Microsoft Word, ảnh, v.v.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 62: Amazon S3 replicates all objects……….. (Select the best answer)",
+    translation: "(Câu 62: Amazon S3 sao chép tất cả các đối tượng……….. (Chọn đáp án đúng nhất))",
+    choices: [
+      "on multiple volumes within an Availability Zone",
+      "in multiple Availability Zones within the same Region",
+      "across multiple Regions for higher durability",
+      "on multiple S3 buckets"
+    ],
+    choicesTranslation: [
+      "(trên nhiều ổ đĩa trong một Khu vực khả dụng)",
+      "(trong nhiều Khu vực khả dụng trong cùng một Khu vực)",
+      "(trên nhiều Khu vực để tăng độ bền)",
+      "(trên nhiều thùng S3)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 63: Which of the following can be used as a storage class for an S3 object lifecycle policy? (Choose three)",
+    translation: "(Câu 63: Trong số các lựa chọn sau, đâu là lớp lưu trữ có thể được sử dụng cho chính sách vòng đời đối tượng S3? (Chọn ba))",
+    choices: [
+      "S3-Standard Access",
+      "AWS Storage Gateway",
+      "S3-Infrequent Access",
+      "Simple Storage Service Glacier",
+      "S3-Reduced Redundancy Storage",
+      "Amazon DynamoDB"
+    ],
+    choicesTranslation: [
+      "(S3-Truy cập tiêu chuẩn)",
+      "(AWS Storage Gateway)",
+      "(S3-Truy cập không thường xuyên)",
+      "(Simple Storage Service Glacier)",
+      "(Lưu trữ giảm độ dư S3)",
+      "(Amazon DynamoDB)"
+    ],
+    correctAnswer: [0, 2, 3]
+  },
+  {
+    question: "Câu 64: The name of an S3 bucket must be unique ….(Select the best answer)",
+    translation: "(Câu 64: Tên của một thùng S3 phải là duy nhất ….(Chọn đáp án đúng nhất))",
+    choices: [
+      "worldwide across all AWS accounts",
+      "within a Region",
+      "across all your AWS accounts",
+      "within your AWS account"
+    ],
+    choicesTranslation: [
+      "(trên toàn cầu cho tất cả các tài khoản AWS)",
+      "(trong một Khu vực)",
+      "(trong tất cả các tài khoản AWS của bạn)",
+      "(trong tài khoản AWS của bạn)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 65: You can use Amazon Elastic File System (Amazon EFS) to: (Select the best answer)",
+    translation: "(Câu 65: Bạn có thể sử dụng Amazon Elastic File System (Amazon EFS) để: (Chọn đáp án đúng nhất))",
+    choices: [
+      "provide simple, scalable, elastic file storage for use only within AWS.",
+      "implement storage for Amazon EC2 instances that multiple virtual machines can access at the same time.",
+      "host a robust CDN to deliver entire web sites with dynamic, static, and streaming content.",
+      "generate user-specific content."
+    ],
+    choicesTranslation: [
+      "(cung cấp lưu trữ tệp đơn giản, có thể mở rộng, linh hoạt chỉ sử dụng trong AWS.)",
+      "(triển khai lưu trữ cho các phiên bản Amazon EC2 mà nhiều máy ảo có thể truy cập đồng thời.)",
+      "(lưu trữ một CDN mạnh mẽ để cung cấp toàn bộ trang web với nội dung động, tĩnh và phát trực tuyến.)",
+      "(tạo nội dung riêng cho người dùng.)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 66: Amazon Elastic Block Store (Amazon EBS) is recommended when data…… and…… (Choose two)",
+    translation: "(Câu 66: Amazon Elastic Block Store (Amazon EBS) được khuyến nghị khi dữ liệu…… và…… (Chọn hai))",
+    choices: [
+      "requires object-level storage",
+      "must be quickly accessible, requiring long-term persistence",
+      "requires an encryption solution",
+      "needs to be stored in a different Availability Zone than the one the EC2 instance is in"
+    ],
+    choicesTranslation: [
+      "(cần lưu trữ theo đối tượng)",
+      "(cần truy cập nhanh, yêu cầu sự tồn tại lâu dài)",
+      "(cần một giải pháp mã hóa)",
+      "(cần được lưu trữ trong một Khu vực khả dụng khác với Khu vực mà phiên bản EC2 đang ở)"
+    ],
+    correctAnswer: [1, 2]
+  },
+  {
+    question: "Câu 67: True or False? By default, all data stored in Amazon S3 is viewable by the public.",
+    translation: "(Câu 67: Đúng hay Sai? Theo mặc định, tất cả dữ liệu lưu trữ trong Amazon S3 đều có thể xem được bởi công chúng.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 68: Regarding Amazon S3 Glacier, what is a Vault? (Select the best answer)",
+    translation: "(Câu 68: Về Amazon S3 Glacier, Vault là gì? (Chọn đáp án đúng nhất))",
+    choices: [
+      "The rules that determine who may (or may not) access archives",
+      "An object (photos, videos, files, or documents)",
+      "A container for storing archives",
+      "A policy that identifies who can access content stored in Glacier"
+    ],
+    choicesTranslation: [
+      "(Các quy tắc xác định ai có thể (hoặc không thể) truy cập các kho lưu trữ)",
+      "(Một đối tượng (ảnh, video, tệp hoặc tài liệu))",
+      "(Một thùng chứa để lưu trữ các kho lưu trữ)",
+      "(Một chính sách xác định ai có thể truy cập nội dung được lưu trữ trong Glacier)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 69: True or False? When you create a bucket in Amazon S3, it is associated with a specific AWS Region.",
+    translation: "(Câu 69: Đúng hay Sai? Khi bạn tạo một thùng trong Amazon S3, nó được liên kết với một Khu vực AWS cụ thể.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 70: Which of the following are features of Amazon Elastic Block Store (Amazon EBS)? (Choose two)",
+    translation: "(Câu 70: Các tính năng nào sau đây là của Amazon Elastic Block Store (Amazon EBS)? (Chọn hai))",
+    choices: [
+      "Amazon EBS volumes can be encrypted transparently to workloads on the attached instance.",
+      "Amazon EBS data is automatically backed up to tape.",
+      "Data stored on Amazon EBS is automatically replicated within an Availability Zone.",
+      "Data on an Amazon EBS volume is lost when the attached instance is stopped."
+    ],
+    choicesTranslation: [
+      "(Các khối lượng EBS của Amazon có thể được mã hóa một cách minh bạch với khối lượng công việc trên phiên bản đã gắn vào.)",
+      "(Dữ liệu Amazon EBS được sao lưu tự động vào băng từ.)",
+      "(Dữ liệu lưu trữ trên Amazon EBS được sao chép tự động trong một Khu vực khả dụng.)",
+      "(Dữ liệu trên một khối lượng EBS Amazon bị mất khi phiên bản gắn vào bị dừng.)"
+    ],
+    correctAnswer: [0, 2]
+  },
+  {
+    question: "Câu 71: You are designing an ecommerce web application that will scale to hundreds of thousands of concurrent users. Which database technology is best suited to hold the session state in this example?",
+    translation: "(Câu 71: Bạn đang thiết kế một ứng dụng web thương mại điện tử sẽ mở rộng lên hàng trăm ngàn người dùng đồng thời. Công nghệ cơ sở dữ liệu nào phù hợp nhất để lưu giữ trạng thái phiên trong ví dụ này?)",
+    choices: [
+      "Amazon Relational Database Service (Amazon RDS)",
+      "Amazon DynamoDB",
+      "Amazon Redshift",
+      "Amazon Simple Storage Service (Amazon S3)"
+    ],
+    choicesTranslation: [
+      "(Dịch vụ cơ sở dữ liệu quan hệ Amazon (Amazon RDS))",
+      "(Amazon DynamoDB)",
+      "(Amazon Redshift)",
+      "(Dịch vụ lưu trữ đơn giản Amazon (Amazon S3))"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 72: You need to find an item in an Amazon DynamoDB table using an attribute other than the item's primary key. Which of the following operations should you use? (Select the best answer.)",
+    translation: "(Câu 72: Bạn cần tìm một mục trong bảng Amazon DynamoDB bằng cách sử dụng một thuộc tính khác ngoài khóa chính của mục. Bạn nên sử dụng thao tác nào trong số các thao tác sau? (Chọn đáp án đúng nhất))",
+    choices: [
+      "PutItem",
+      "Scan",
+      "Query",
+      "GetItem"
+    ],
+    choicesTranslation: [
+      "(PutItem)",
+      "(Quét)",
+      "(Truy vấn)",
+      "(GetItem)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 73: In Amazon DynamoDB, what does the query operation enable you to do? (Select the best answer.)",
+    translation: "(Câu 73: Trong Amazon DynamoDB, thao tác truy vấn cho phép bạn làm gì? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Query a table using the partition key and an optional sort key filter",
+      "Query any secondary indexes that exist for a table",
+      "Efficiently retrieve items from a table or secondary index",
+      "All of the above"
+    ],
+    choicesTranslation: [
+      "(Truy vấn một bảng bằng cách sử dụng khóa phân vùng và bộ lọc khóa sắp xếp tùy chọn)",
+      "(Truy vấn bất kỳ chỉ mục phụ nào tồn tại cho một bảng)",
+      "(Truy xuất hiệu quả các mục từ một bảng hoặc chỉ mục phụ)",
+      "(Tất cả các đáp án trên)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 74: Which AWS Cloud service is best suited for analyzing your data by using standard structured query language (SQL) and your existing business intelligence (BI) tools? (Select the best answer.)",
+    translation: "(Câu 74: Dịch vụ Cloud AWS nào phù hợp nhất để phân tích dữ liệu của bạn bằng cách sử dụng ngôn ngữ truy vấn có cấu trúc tiêu chuẩn (SQL) và các công cụ trí tuệ doanh nghiệp (BI) hiện có của bạn? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon Relational Database Service (Amazon RDS)",
+      "Amazon Simple Storage Service Glacier",
+      "Amazon DynamoDB",
+      "Amazon Redshift"
+    ],
+    choicesTranslation: [
+      "(Dịch vụ cơ sở dữ liệu quan hệ Amazon (Amazon RDS))",
+      "(Dịch vụ lưu trữ đơn giản Amazon Glacier)",
+      "(Amazon DynamoDB)",
+      "(Amazon Redshift)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 75: In Amazon DynamoDB, an attribute is ……(Select the best answer.)",
+    translation: "(Câu 75: Trong Amazon DynamoDB, một thuộc tính là ……(Chọn đáp án đúng nhất))",
+    choices: [
+      "a fundamental data element",
+      "a collection of items",
+      "a collection of attributes"
+    ],
+    choicesTranslation: [
+      "(một yếu tố dữ liệu cơ bản)",
+      "(một tập hợp các mục)",
+      "(một tập hợp các thuộc tính)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 76: If you are developing an application that requires a database with extremely fast performance, fast scalability, and flexibility in the database schema, which service should you consider? (Select the best answer.)",
+    translation: "(Câu 76: Nếu bạn đang phát triển một ứng dụng yêu cầu một cơ sở dữ liệu có hiệu suất cực kỳ nhanh, khả năng mở rộng nhanh và linh hoạt trong sơ đồ cơ sở dữ liệu, dịch vụ nào bạn nên xem xét? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon Relational Database Service (Amazon RDS)",
+      "Amazon ElastiCache",
+      "Amazon DynamoDB",
+      "Amazon Redshift"
+    ],
+    choicesTranslation: [
+      "(Dịch vụ cơ sở dữ liệu quan hệ Amazon (Amazon RDS))",
+      "(Amazon ElastiCache)",
+      "(Amazon DynamoDB)",
+      "(Amazon Redshift)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 77: Which of the following use cases is appropriate for using Amazon Relational Database Service (Amazon RDS)? (Select the best answer.)",
+    translation: "(Câu 77: Trong số các trường hợp sử dụng sau đây, trường hợp nào phù hợp cho việc sử dụng Dịch vụ cơ sở dữ liệu quan hệ Amazon (Amazon RDS)? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Massive read/write rates",
+      "Simple GET or PUT requests",
+      "Complex transactions",
+      "All of the above"
+    ],
+    choicesTranslation: [
+      "(Tốc độ đọc/ghi khổng lồ)",
+      "(Các yêu cầu GET hoặc PUT đơn giản)",
+      "(Giao dịch phức tạp)",
+      "(Tất cả các đáp án trên)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 78: A company has an application, which consists of a .NET layer that connects to a MySQL database. They want to move this application on to AWS and use AWS features such as high availability and automated backups. Which of the following would be an ideal database for this use case? (Select the best answer)",
+    translation: "(Câu 78: Một công ty có một ứng dụng, bao gồm một lớp .NET kết nối với cơ sở dữ liệu MySQL. Họ muốn di chuyển ứng dụng này lên AWS và sử dụng các tính năng AWS như độ sẵn sàng cao và sao lưu tự động. Dịch vụ cơ sở dữ liệu nào sẽ lý tưởng cho trường hợp sử dụng này? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon Aurora",
+      "Amazon DynamoDB",
+      "Amazon RDS",
+      "Amazon Redshift"
+    ],
+    choicesTranslation: [
+      "(Amazon Aurora)",
+      "(Amazon DynamoDB)",
+      "(Amazon RDS)",
+      "(Amazon Redshift)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 79: True or false? Amazon RDS automatically patches the database software and backs up your database, storing the backups for a user-defined retention period and enabling point-in-time recovery.",
+    translation: "(Câu 79: Đúng hay Sai? Amazon RDS tự động vá phần mềm cơ sở dữ liệu và sao lưu cơ sở dữ liệu của bạn, lưu trữ các bản sao lưu trong một khoảng thời gian xác định bởi người dùng và cho phép phục hồi theo thời gian đã xác định.)",
+    choices: [
+      "True",
+      "False"
+    ],
+    choicesTranslation: [
+      "(Đúng)",
+      "(Sai)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 80: What should you consider when choosing a database type? (Select the best answer.)",
+    translation: "(Câu 80: Bạn nên xem xét điều gì khi chọn loại cơ sở dữ liệu? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Data size",
+      "Data access period",
+      "Query frequency",
+      "Highly available",
+      "All of the above"
+    ],
+    choicesTranslation: [
+      "(Kích thước dữ liệu)",
+      "(Thời gian truy cập dữ liệu)",
+      "(Tần suất truy vấn)",
+      "(Độ sẵn sàng cao)",
+      "(Tất cả các đáp án trên)"
+    ],
+    correctAnswer: [4]
+  },
+  {
+    question: "Câu 81: Which of the following is not one of the four areas of the performance efficiency pillar of the AWS Well-Architected Framework? (Select the best answer.)",
+    translation: "(Câu 81: Trong số các yếu tố sau, yếu tố nào không phải là một trong bốn lĩnh vực của trụ cột hiệu suất trong AWS Well-Architected Framework? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Tradeoffs",
+      "Selection",
+      "Traceability",
+      "Monitoring"
+    ],
+    choicesTranslation: [
+      "(Đánh đổi)",
+      "(Lựa chọn)",
+      "(Theo dõi)",
+      "(Giám sát)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 82: Which of the following is a principle when designing cloud-based systems? (Select the best answer.)",
+    translation: "(Câu 82: Nguyên tắc nào sau đây là nguyên tắc khi thiết kế các hệ thống dựa trên đám mây? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Build tightly-coupled components",
+      "Make infrequent, large batch changes",
+      "Assume everything will fail",
+      "Use as many services as possible"
+    ],
+    choicesTranslation: [
+      "(Xây dựng các thành phần liên kết chặt chẽ)",
+      "(Thực hiện các thay đổi lớn ít thường xuyên)",
+      "(Giả định mọi thứ sẽ thất bại)",
+      "(Sử dụng càng nhiều dịch vụ càng tốt)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 83: Which of the following are pillars of the AWS Well-Architected Framework? (Choose three)",
+    translation: "(Câu 83: Trong số các yếu tố sau, yếu tố nào là trụ cột của AWS Well-Architected Framework? (Chọn ba))",
+    choices: [
+      "Security",
+      "Persistence",
+      "Operational Excellence",
+      "Cost Optimization"
+    ],
+    choicesTranslation: [
+      "(Bảo mật)",
+      "(Sự bền vững)",
+      "(Xuất sắc hoạt động)",
+      "(Tối ưu hóa chi phí)"
+    ],
+    correctAnswer: [0, 2, 3]
+  },
+  {
+    question: "Câu 84: Which design principles are recommended when considering performance efficiency? (Choose two.)",
+    translation: "(Câu 84: Các nguyên tắc thiết kế nào được khuyến nghị khi xem xét hiệu suất? (Chọn hai))",
+    choices: [
+      "Democratize advanced technologies",
+      "Analyze and attribute expenditure",
+      "Use serverless architectures",
+      "Match supply with demand",
+      "Enable traceability"
+    ],
+    choicesTranslation: [
+      "(Dân chủ hóa các công nghệ tiên tiến)",
+      "(Phân tích và ghi nhận chi phí)",
+      "(Sử dụng kiến trúc không máy chủ)",
+      "(Phù hợp cung cầu)",
+      "(Kích hoạt khả năng theo dõi)"
+    ],
+    correctAnswer: [0, 2]
+  },
+  {
+    question: "Câu 85: AWS Trusted Advisor provides insight regarding which five categories of an AWS account? (Select the best answer.)",
+    translation: "(Câu 85: AWS Trusted Advisor cung cấp thông tin về năm danh mục nào của một tài khoản AWS? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Performance, cost optimization, security, fault tolerance, service limits",
+      "Security, fault tolerance, high availability, connectivity, service limits",
+      "Performance, cost optimization, access control, connectivity, security",
+      "Security, access control, high availability, performance, service limits"
+    ],
+    choicesTranslation: [
+      "(Hiệu suất, tối ưu hóa chi phí, bảo mật, khả năng chịu lỗi, giới hạn dịch vụ)",
+      "(Bảo mật, khả năng chịu lỗi, độ sẵn sàng cao, kết nối, giới hạn dịch vụ)",
+      "(Hiệu suất, tối ưu hóa chi phí, kiểm soát truy cập, kết nối, bảo mật)",
+      "(Bảo mật, kiểm soát truy cập, độ sẵn sàng cao, hiệu suất, giới hạn dịch vụ)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 86: What is the focus of the sustainability pillar of the Well-Architected Framework? (Select the best answer.)",
+    translation: "(Câu 86: Trọng tâm của trụ cột bền vững trong Well-Architected Framework là gì? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Designing workloads that recover quickly from failures",
+      "Minimizing the environmental impacts of running cloud workloads",
+      "Avoiding unnecessary costs in cloud workloads",
+      "Automating updates to cloud workloads"
+    ],
+    choicesTranslation: [
+      "(Thiết kế các tải công việc có khả năng phục hồi nhanh chóng từ các thất bại)",
+      "(Giảm thiểu tác động đến môi trường khi vận hành tải công việc trên đám mây)",
+      "(Tránh các chi phí không cần thiết trong tải công việc trên đám mây)",
+      "(Tự động cập nhật tải công việc trên đám mây)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 87: After you move to the AWS Cloud, you want to ensure that the right security settings are put in place. Which online tool can assist in security compliance? (Select the best answer.)",
+    translation: "(Câu 87: Sau khi bạn chuyển sang AWS Cloud, bạn muốn đảm bảo rằng các cài đặt bảo mật đúng được thiết lập. Công cụ trực tuyến nào có thể hỗ trợ tuân thủ bảo mật? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon Kinesis",
+      "AWS Support",
+      "AWS Trusted Advisor",
+      "Amazon CloudWatch"
+    ],
+    choicesTranslation: [
+      "(Amazon Kinesis)",
+      "(Hỗ trợ AWS)",
+      "(AWS Trusted Advisor)",
+      "(Amazon CloudWatch)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 88: Which of the following is a measure of your system's ability to provide functionality when desired by the user? (Select the best answer.)",
+    translation: "(Câu 88: Yếu tố nào sau đây là thước đo khả năng của hệ thống bạn cung cấp chức năng khi người dùng yêu cầu? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Availability",
+      "Fault Tolerance",
+      "Reliability",
+      "Performance efficiency"
+    ],
+    choicesTranslation: [
+      "(Độ khả dụng)",
+      "(Khả năng chịu lỗi)",
+      "(Độ tin cậy)",
+      "(Hiệu suất)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 89: What is defined as the ability for a system to remain operational even if some of the components of that system fail? (Select the best answer.)",
+    translation: "(Câu 89: Khả năng được định nghĩa là khả năng của một hệ thống duy trì hoạt động ngay cả khi một số thành phần của hệ thống đó thất bại là gì? (Chọn đáp án đúng nhất))",
+    choices: [
+      "High durability",
+      "Fault tolerance",
+      "High availability",
+      "High durability"
+    ],
+    choicesTranslation: [
+      "(Độ bền cao)",
+      "(Khả năng chịu lỗi)",
+      "(Độ khả dụng cao)",
+      "(Độ bền cao)"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 90: Which of the following best describes a system that can withstand some measures of degradation, experiences minimal downtime, and requires minimal human intervention? (Select the best answer.)",
+    translation: "(Câu 90: Yếu tố nào sau đây mô tả tốt nhất một hệ thống có thể chịu đựng một số mức độ suy giảm, trải qua thời gian chết tối thiểu và yêu cầu sự can thiệp của con người tối thiểu? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Scalable",
+      "Fault-tolerant",
+      "Elastic",
+      "Highly available"
+    ],
+    choicesTranslation: [
+      "(Có thể mở rộng)",
+      "(Chịu lỗi)",
+      "(Đàn hồi)",
+      "(Độ khả dụng cao)"
+    ],
+    correctAnswer: [3]
+  },
+  {
+    question: "Câu 91: Which of the following AWS tools help your application scale up or down based on demand? (Choose two.)",
+    translation: "(Câu 91: Trong số các công cụ AWS sau đây, công cụ nào giúp ứng dụng của bạn mở rộng hoặc thu hẹp theo nhu cầu? (Chọn hai))",
+    choices: [
+      "Availability Zones",
+      "Amazon EC2 Auto Scaling",
+      "AWS CloudFormation",
+      "Elastic Load Balancing",
+      "AWS Config"
+    ],
+    choicesTranslation: [
+      "(Khu vực khả dụng)",
+      "(Amazon EC2 Auto Scaling)",
+      "(AWS CloudFormation)",
+      "(Cân bằng tải động)",
+      "(AWS Config)"
+    ],
+    correctAnswer: [1, 3]
+  },
+  {
+    question: "Câu 92: Which service would you use to send alerts based on Amazon CloudWatch alarms? (Select the best answer.)",
+    translation: "(Câu 92: Dịch vụ nào bạn sẽ sử dụng để gửi thông báo dựa trên cảnh báo của Amazon CloudWatch? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon Simple Notification Service (Amazon SNS)",
+      "AWS CloudTrail",
+      "AWS Trusted Advisor",
+      "Amazon Route 53"
+    ],
+    choicesTranslation: [
+      "(Amazon Simple Notification Service (Amazon SNS))",
+      "(AWS CloudTrail)",
+      "(AWS Trusted Advisor)",
+      "(Amazon Route 53)"
+    ],
+    correctAnswer: [0]
+  },
+  {
+    question: "Câu 93: Which of the following are characteristics of Amazon EC2 Auto Scaling? (Choose three)",
+    translation: "(Câu 93: Đặc điểm nào sau đây của Amazon EC2 Auto Scaling? (Chọn ba))",
+    choices: [
+      "Only supports dynamic scaling",
+      "Responds to changing conditions by adding or terminating instances",
+      "Delivers push notifications",
+      "Launches instances from a specified Amazon Machine Image (AMI)",
+      "Enforces a minimum number of running Amazon EC2 instances"
+    ],
+    choicesTranslation: [
+      "(Chỉ hỗ trợ mở rộng động)",
+      "(Phản hồi các điều kiện thay đổi bằng cách thêm hoặc ngừng các phiên bản)",
+      "(Cung cấp thông báo đẩy)",
+      "(Khởi động các phiên bản từ một Amazon Machine Image (AMI) đã chỉ định)",
+      "(Thực thi số lượng tối thiểu các phiên bản Amazon EC2 đang chạy)"
+    ],
+    correctAnswer: [1, 3, 4]
+  },
+  {
+    question: "Câu 94: Which of the following must be configured on an Elastic Load Balancing load balancer to expect incoming traffic? (Select the best answer.)",
+    translation: "(Câu 94: Yếu tố nào sau đây phải được cấu hình trên một bộ cân bằng tải Elastic Load Balancing để dự kiến lưu lượng truy cập đến? (Chọn đáp án đúng nhất))",
+    choices: [
+      "A port",
+      "A network interface",
+      "A listener",
+      "An instance"
+    ],
+    choicesTranslation: [
+      "(Một cổng)",
+      "(Một giao diện mạng)",
+      "(Một trình nghe)",
+      "(Một phiên bản)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 95: Which of the following elements are used to create an Amazon EC2 Auto Scaling launch configuration? (Choose three.)",
+    translation: "(Câu 95: Các yếu tố nào sau đây được sử dụng để tạo cấu hình khởi động Amazon EC2 Auto Scaling? (Chọn ba))",
+    choices: [
+      "Amazon Machine Image (AMI)",
+      "Load balancer",
+      "Instance type",
+      "Virtual private cloud (VPC) and subnets",
+      "Amazon Elastic Block Store (Amazon EBS) volumes"
+    ],
+    choicesTranslation: [
+      "(Amazon Machine Image (AMI))",
+      "(Cân bằng tải)",
+      "(Loại phiên bản)",
+      "(Mạng riêng ảo (VPC) và các subnet)",
+      "(Amazon Elastic Block Store (Amazon EBS) volumes)"
+    ],
+    correctAnswer: [0, 2, 4]
+  },
+  {
+    question: "Câu 96: Which of the following services can help you collect important metrics from Amazon Relational Database Service (Amazon RDS) and Amazon Elastic Compute Cloud (Amazon EC2) instances? (Select the best answer.)",
+    translation: "(Câu 96: Dịch vụ nào sau đây có thể giúp bạn thu thập các số liệu quan trọng từ Amazon Relational Database Service (Amazon RDS) và Amazon Elastic Compute Cloud (Amazon EC2) instances? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon CloudFront",
+      "Amazon CloudSearch",
+      "Amazon CloudWatch",
+      "AWS CloudTrail",
+      "Amazon EC2 Auto Scaling"
+    ],
+    choicesTranslation: [
+      "(Amazon CloudFront)",
+      "(Amazon CloudSearch)",
+      "(Amazon CloudWatch)",
+      "(AWS CloudTrail)",
+      "(Amazon EC2 Auto Scaling)"
+    ],
+    correctAnswer: [2]
+  },
+  {
+    question: "Câu 97: Which of the following are elements of an Auto Scaling group? (Choose three.)",
+    translation: "(Câu 97: Các yếu tố nào sau đây là thành phần của một nhóm Auto Scaling? (Chọn ba))",
+    choices: [
+      "Minimum size",
+      "Health checks",
+      "Desired capacity",
+      "Maximum size"
+    ],
+    choicesTranslation: [
+      "(Kích thước tối thiểu)",
+      "(Kiểm tra sức khỏe)",
+      "(Dung lượng mong muốn)",
+      "(Kích thước tối đa)"
+    ],
+    correctAnswer: [0, 2, 3]
+  },
+  {
+    question: "Câu 98: There is an audit at your company and they need to have a log of all access to AWS resources in the account. Which of the following services can assist in providing these details? (Select the best answer.)",
+    translation: "(Câu 98: Có một cuộc kiểm toán tại công ty của bạn và họ cần có một bản ghi của tất cả các truy cập đến tài nguyên AWS trong tài khoản. Dịch vụ nào sau đây có thể hỗ trợ cung cấp những thông tin này? (Chọn đáp án đúng nhất))",
+    choices: [
+      "Amazon CloudWatch",
+      "AWS CloudTrail",
+      "Amazon Elastic Compute Cloud (Amazon EC2)",
+      "Amazon Simple Notification Service (Amazon SNS)"
+    ],
+    choicesTranslation: [
+      "(Amazon CloudWatch)",
+      "(AWS CloudTrail)",
+      "(Amazon Elastic Compute Cloud (Amazon EC2))",
+      "(Amazon Simple Notification Service (Amazon SNS))"
+    ],
+    correctAnswer: [1]
+  },
+  {
+    question: "Câu 99: In Elastic Load Balancing, when the load balancer detects an unhealthy target, which of the following are true? (Choose three.)",
+    translation: "(Câu 99: Trong Elastic Load Balancing, khi bộ cân bằng tải phát hiện một mục tiêu không khỏe, những điều nào sau đây là đúng? (Chọn ba))",
+    choices: [
+      "Stops routing traffic to that target",
+      "Triggers an alarm",
+      "Resumes routing traffic when it detects that the target is healthy again",
+      "Resumes routing traffic when manually restarted",
+      "Routes traffic to a healthy target"
+    ],
+    choicesTranslation: [
+      "(Ngừng định tuyến lưu lượng truy cập đến mục tiêu đó)",
+      "(Kích hoạt một cảnh báo)",
+      "(Tiếp tục định tuyến lưu lượng truy cập khi phát hiện mục tiêu lại khỏe)",
+      "(Tiếp tục định tuyến lưu lượng truy cập khi khởi động thủ công)",
+      "(Định tuyến lưu lượng truy cập đến mục tiêu khỏe)"
+    ],
+    correctAnswer: [0, 2, 4]
+  },
+  {
+    question: "Câu 100: What are the three types of load balancers that Elastic Load Balancing offers?",
+    translation: "(Câu 100: Ba loại bộ cân bằng tải mà Elastic Load Balancing cung cấp là gì?)",
+    choices: [
+      "Internet Load Balancer",
+      "Application Load Balancer",
+      "Network Load Balancer",
+      "Compute Load Balancer",
+      "Classic Load Balancer",
+      "Auto Scaling Load Balancer"
+    ],
+    choicesTranslation: [
+      "(Bộ cân bằng tải Internet)",
+      "(Bộ cân bằng tải ứng dụng)",
+      "(Bộ cân bằng tải mạng)",
+      "(Bộ cân bằng tải tính toán)",
+      "(Bộ cân bằng tải cổ điển)",
+      "(Bộ cân bằng tải Auto Scaling)"
+    ],
+    correctAnswer: [1, 2, 4]
+  }
+    ];
+
+    function loadQuiz() {
+        const quizDiv = document.getElementById("quiz");
+        quizDiv.innerHTML = "";  // Xóa nội dung trước nếu có
+        questions.forEach((q, index) => {
+            const questionHTML = `
+                <div class="question">
+                    <p>${q.question} <span class="translation">${q.translation}</span></p>
+                    <div class="choices" id="question${index}">
+                        ${q.choices.map((choice, i) => `
+                            <label><input type="radio" name="question${index}" value="${i}" onclick="checkAnswer(${index}, ${i})"> ${choice} <span class="translation">${q.choicesTranslation[i]}</span></label><br>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            quizDiv.innerHTML += questionHTML;
+        });
+    }
+
+    function checkAnswer(questionIndex, selectedAnswer) {
+        const question = questions[questionIndex];
+        const choicesDiv = document.getElementById(`question${questionIndex}`);
+        const inputs = choicesDiv.getElementsByTagName('input');
+
+        // Đánh dấu đáp án đúng và sai cho tất cả các lựa chọn
+        for (let i = 0; i < inputs.length; i++) {
+            if (question.correctAnswer.includes(i)) {
+                inputs[i].parentNode.style.color = 'green';  // Đáp án đúng tô màu xanh lá
+                inputs[i].parentNode.style.fontSize = '18px'; // Đáp án đúng có kích thước lớn hơn
+                inputs[i].parentNode.classList.add('correct'); // Thêm class cho đáp án đúng
+            } else if (inputs[i].checked) {
+                inputs[i].parentNode.style.color = 'red'; // Đáp án sai tô màu đỏ
+                inputs[i].parentNode.style.fontSize = '14px'; // Đáp án sai có kích thước nhỏ hơn
+                inputs[i].parentNode.classList.add('incorrect'); // Thêm class cho đáp án sai
+            } else {
+                inputs[i].parentNode.style.color = ''; // Đặt lại màu cho các lựa chọn không được chọn
+                inputs[i].parentNode.style.fontSize = ''; // Đặt lại kích thước cho các lựa chọn không được chọn
+            }
+        }
+    }
+
+    // Tải các câu hỏi khi trang được tải
+    window.onload = loadQuiz;
+</script>
+
+</body>
+</html>
